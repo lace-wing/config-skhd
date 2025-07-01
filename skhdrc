@@ -5,10 +5,10 @@
 alt - return : ^open -na /Applications/Ghostty.app
 
 # default mode: focus and move
-:: default : sketchybar -m --set skhd label="NOR" label.color=0xFFAFAF8B
+:: default : sketchybar --trigger skhd_mode_change SKHD_MODE=NOR
 
 # visual mode: resize, as if dragginga
-:: visual : sketchybar -m --set skhd label="VIS" label.color=0xFFCC8B89
+:: visual : sketchybar --trigger skhd_mode_change SKHD_MODE=VIS
 
 # default to config
 default < alt - v ; visual
@@ -69,15 +69,15 @@ alt - 9 : aerospace workspace 9
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt + shift - b : aerospace move-node-to-workspace --wrap-around prev, aerospace workspace --wrap-around prev
 alt + shift - n : aerospace move-node-to-workspace --wrap-around next, aerospace workspace --wrap-around next
-alt + shift - 1 : aerospace move-node-to-workspace 1, aerospace workspace 1
-alt + shift - 2 : aerospace move-node-to-workspace 2, aerospace workspace 2
-alt + shift - 3 : aerospace move-node-to-workspace 3, aerospace workspace 3
-alt + shift - 4 : aerospace move-node-to-workspace 4, aerospace workspace 4
-alt + shift - 5 : aerospace move-node-to-workspace 5, aerospace workspace 5
-alt + shift - 6 : aerospace move-node-to-workspace 6, aerospace workspace 6
-alt + shift - 7 : aerospace move-node-to-workspace 7, aerospace workspace 7
-alt + shift - 8 : aerospace move-node-to-workspace 8, aerospace workspace 8
-alt + shift - 9 : aerospace move-node-to-workspace 9, aerospace workspace 9
+alt + shift - 1 : aerospace move-node-to-workspace 1; aerospace workspace 1
+alt + shift - 2 : aerospace move-node-to-workspace 2; aerospace workspace 2
+alt + shift - 3 : aerospace move-node-to-workspace 3; aerospace workspace 3
+alt + shift - 4 : aerospace move-node-to-workspace 4; aerospace workspace 4
+alt + shift - 5 : aerospace move-node-to-workspace 5; aerospace workspace 5
+alt + shift - 6 : aerospace move-node-to-workspace 6; aerospace workspace 6
+alt + shift - 7 : aerospace move-node-to-workspace 7; aerospace workspace 7
+alt + shift - 8 : aerospace move-node-to-workspace 8; aerospace workspace 8
+alt + shift - 9 : aerospace move-node-to-workspace 9; aerospace workspace 9
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt - tab : aerospace workspace-back-and-forth
