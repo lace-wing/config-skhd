@@ -4,16 +4,11 @@
 
 alt - return : ^open -na /Applications/Ghostty.app
 
-
-################
-# Yabai config #
-################
-
 # default mode: focus and move
-:: default : sketchybar -m --set skhd label="NORMAL" label.color=0xFFAFAF8B
+:: default : sketchybar -m --set skhd label="NOR" label.color=0xFFAFAF8B
 
 # visual mode: resize, as if dragginga
-:: visual : sketchybar -m --set skhd label="VISUAL" label.color=0xFFCC8B89
+:: visual : sketchybar -m --set skhd label="VIS" label.color=0xFFCC8B89
 
 # default to config
 default < alt - v ; visual
@@ -21,167 +16,285 @@ default < alt - v ; visual
 # visual to default
 visual < escape ; default
 
-# restart service, which reloads config
-shift + alt - r : yabai --restart-service
+
+#############
+# Aerospace #
+#############
+# Available commands: https://nikitabobko.github.io/AeroSpace/commands
+
+alt + shift - r : aerospace reload-config
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+# 0x2C - slash
+alt - 0x2C : aerospace layout tiles accordion
+alt + shift - space : aerosapce layout tiling floating
 
 # focus window
-alt - h : yabai -m window --focus west
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - l : yabai -m window --focus east
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+alt - h : aerospace focus left
+alt - j : aerospace focus down
+alt - k : aerospace focus up
+alt - l : aerospace focus right
 
 # swap managed window
-shift + alt - h : yabai -m window --swap west
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - l : yabai -m window --swap east
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+shift + alt - h : aerospace move left
+shift + alt - j : aerospace move down
+shift + alt - k : aerospace move up
+shift + alt - l : aerospace move right
 
-# move managed window
-shift + cmd - h : yabai -m window --warp west
-shift + cmd - j : yabai -m window --warp south
-shift + cmd - k : yabai -m window --warp north
-shift + cmd - l : yabai -m window --warp east
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+# 0x1B - minus
+alt + shift - 0x1B : aerospace resize smart -50
+# 0x18 - equal
+alt + shift - 0x18 : aerospace resize smart +50
 
-# balance size of windows
-shift + alt - 0 : yabai -m space --balance
+# maximize and fullscreen
+alt - f : aerospace fullscreen
+alt + shift - f : aerospace macos-native-fullscreen
 
-# make floating window fill screen
-shift + alt - f     : yabai -m window --grid 1:1:0:0:1:1
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt - b : aerospace workspace prev --wrap-around
+alt - n : aerospace workspace next --wrap-around
+alt - 1 : aerospace workspace 1
+alt - 2 : aerospace workspace 2
+alt - 3 : aerospace workspace 3
+alt - 4 : aerospace workspace 4
+alt - 5 : aerospace workspace 5
+alt - 6 : aerospace workspace 6
+alt - 7 : aerospace workspace 7
+alt - 8 : aerospace workspace 8
+alt - 9 : aerospace workspace 9
 
-# make floating window fill left-half of screen
-# shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt + shift - b : aerospace move-node-to-workspace --wrap-around prev, aerospace workspace --wrap-around prev
+alt + shift - n : aerospace move-node-to-workspace --wrap-around next, aerospace workspace --wrap-around next
+alt + shift - 1 : aerospace move-node-to-workspace 1, aerospace workspace 1
+alt + shift - 2 : aerospace move-node-to-workspace 2, aerospace workspace 2
+alt + shift - 3 : aerospace move-node-to-workspace 3, aerospace workspace 3
+alt + shift - 4 : aerospace move-node-to-workspace 4, aerospace workspace 4
+alt + shift - 5 : aerospace move-node-to-workspace 5, aerospace workspace 5
+alt + shift - 6 : aerospace move-node-to-workspace 6, aerospace workspace 6
+alt + shift - 7 : aerospace move-node-to-workspace 7, aerospace workspace 7
+alt + shift - 8 : aerospace move-node-to-workspace 8, aerospace workspace 8
+alt + shift - 9 : aerospace move-node-to-workspace 9, aerospace workspace 9
 
-# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-# shift + cmd - n : yabai -m space --create && \
-#                   index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
-#                   yabai -m window --space "${index}" && \
-#                   yabai -m space --focus "${index}"
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+alt - tab : aerospace workspace-back-and-forth
 
-# fast focus desktop
-# alt - tab : yabai -m space --focus recent
-# alt - 1 : yabai -m space --focus 1
-# alt - 2 : yabai -m space --focus 2
-# alt - 3 : yabai -m space --focus 3
-# alt - 4 : yabai -m space --focus 4
-# alt - 5 : yabai -m space --focus 5
+# visual mode
 
-# send window to desktop and follow focus
-# shift + alt - n : yabai -m window --space next; yabai -m space --focus next
-# shift + alt - b : yabai -m window --space prev; yabai -m space --focus prev
-# shift alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
-# shift alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
-# shift alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
-# shift alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
-# shift alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+visual < alt - r : aerospace flatten-workspace-tree # reset layout
+visual < alt - w : aerospace close-all-windows-but-current
 
-# focus monitor
-# ctrl + alt - z  : yabai -m display --focus prev
-# ctrl + alt - 3  : yabai -m display --focus 3
+visual < h : aerospace focus left
+visual < j : aerospace focus down
+visual < k : aerospace focus up
+visual < l : aerospace focus right
 
-# send window to monitor and follow focus
-# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
-# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+visual < alt - h : aerospace join-with left
+visual < alt - j : aerospace join-with down
+visual < alt - k : aerospace join-with up
+visual < alt - l : aerospace join-with right
 
-# move floating window
-# shift + ctrl - h : yabai -m window --move rel:-20:0
-# shift + ctrl - j : yabai -m window --move rel:0:20
-# shift + ctrl - k : yabai -m window --move rel:0:-20
-# shift + ctrl - l : yabai -m window --move rel:20:0
+visual < b : aerospace workspace --wrap-around prev
+visual < n : aerospace workspace --wrap-around next
+visual < 1 : aerospace workspace 1
+visual < 2 : aerospace workspace 2
+visual < 3 : aerospace workspace 3
+visual < 4 : aerospace workspace 4
+visual < 5 : aerospace workspace 5
+visual < 6 : aerospace workspace 6
+visual < 7 : aerospace workspace 7
+visual < 8 : aerospace workspace 8
+visual < 9 : aerospace workspace 9
 
-# increase window size
-visual < alt - h : yabai -m window --resize right:20:0
-visual < alt - j : yabai -m window --resize bottom:0:20
+visual < a : aerospace focus-monitor --wrap-around left
+visual < s : aerospace focus-monitor --wrap-around down
+visual < d : aerospace focus-monitor --wrap-around up
+visual < f : aerospace focus-monitor --wrap-around right
 
-# decrease window size
-visual < alt - k : yabai -m window --resize bottom:0:-20
-visual < alt - l : yabai -m window --resize right:-20:0
+visual < alt - a : aerospace move-node-to-monitor --wrap-around left
+visual < alt - s : aerospace move-node-to-monitor --wrap-around down
+visual < alt - d : aerospace move-node-to-monitor --wrap-around up
+visual < alt - f : aerospace move-node-to-monitor --wrap-around right
 
-# set insertion point in focused container
-# ctrl + alt - h : yabai -m window --insert west
-
-# toggle window zoom
-alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
-
-# toggle window split type
-alt - s : yabai -m window --toggle split
-
-# float / unfloat window and center on screen
-shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-# toggle sticky(+float), picture-in-picture
-shift + alt - p : yabai -m window --toggle sticky --toggle pip
+visual < alt + shift - a : aerospace move-workspace-to-monitor --wrap-around prev
+visual < alt + shift - f : aerospace move-workspace-to-monitor --wrap-around next
 
 
-# ################################################################ #
-# THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
-# FOR SIMPLE EXAMPLE MAPPINGS LOOK FURTHER DOWN THIS FILE..        #
-# ################################################################ #
 
-# A list of all built-in modifier and literal keywords can
-# be found at https://github.com/koekeishiya/skhd/issues/1
+# ################
+# # Yabai config #
+# ################
 #
-# A hotkey is written according to the following rules:
+# # default to config
+# default < alt - v ; visual
 #
-#   hotkey       = <mode> '<' <action> | <action>
+# # visual to default
+# visual < escape ; default
 #
-#   mode         = 'name of mode' | <mode> ',' <mode>
+# # restart service, which reloads config
+# shift + alt - r : yabai --restart-service
 #
-#   action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
-#                  <keysym> ':' <command>          | <keysym> '->' ':' <command>
-#                  <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+# # focus window
+# alt - h : yabai -m window --focus west
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
+# alt - l : yabai -m window --focus east
 #
-#   keysym       = <mod> '-' <key> | <key>
+# # swap managed window
+# shift + alt - h : yabai -m window --swap west
+# shift + alt - j : yabai -m window --swap south
+# shift + alt - k : yabai -m window --swap north
+# shift + alt - l : yabai -m window --swap east
 #
-#   mod          = 'modifier keyword' | <mod> '+' <mod>
+# # move managed window
+# shift + cmd - h : yabai -m window --warp west
+# shift + cmd - j : yabai -m window --warp south
+# shift + cmd - k : yabai -m window --warp north
+# shift + cmd - l : yabai -m window --warp east
 #
-#   key          = <literal> | <keycode>
+# # balance size of windows
+# shift + alt - 0 : yabai -m space --balance
 #
-#   literal      = 'single letter or built-in keyword'
+# # make floating window fill screen
+# shift + alt - f     : yabai -m window --grid 1:1:0:0:1:1
 #
-#   keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+# # make floating window fill left-half of screen
+# # shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 #
-#   proc_map_lst = * <proc_map>
+# # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# # shift + cmd - n : yabai -m space --create && \
+# #                   index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+# #                   yabai -m window --space "${index}" && \
+# #                   yabai -m space --focus "${index}"
 #
-#   proc_map     = <string> ':' <command> | <string>     '~' |
-#                  '*'      ':' <command> | '*'          '~'
+# # fast focus desktop
+# # alt - tab : yabai -m space --focus recent
+# # alt - 1 : yabai -m space --focus 1
+# # alt - 2 : yabai -m space --focus 2
+# # alt - 3 : yabai -m space --focus 3
+# # alt - 4 : yabai -m space --focus 4
+# # alt - 5 : yabai -m space --focus 5
 #
-#   string       = '"' 'sequence of characters' '"'
+# # send window to desktop and follow focus
+# # shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+# # shift + alt - b : yabai -m window --space prev; yabai -m space --focus prev
+# # shift alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+# # shift alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+# # shift alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+# # shift alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+# # shift alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
 #
-#   command      = command is executed through '$SHELL -c' and
-#                  follows valid shell syntax. if the $SHELL environment
-#                  variable is not set, it will default to '/bin/bash'.
-#                  when bash is used, the ';' delimeter can be specified
-#                  to chain commands.
+# # focus monitor
+# # ctrl + alt - z  : yabai -m display --focus prev
+# # ctrl + alt - 3  : yabai -m display --focus 3
 #
-#                  to allow a command to extend into multiple lines,
-#                  prepend '\' at the end of the previous line.
+# # send window to monitor and follow focus
+# # ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+# # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
 #
-#                  an EOL character signifies the end of the bind.
+# # move floating window
+# # shift + ctrl - h : yabai -m window --move rel:-20:0
+# # shift + ctrl - j : yabai -m window --move rel:0:20
+# # shift + ctrl - k : yabai -m window --move rel:0:-20
+# # shift + ctrl - l : yabai -m window --move rel:20:0
 #
-#   ->           = keypress is not consumed by skhd
+# # increase window size
+# visual < alt - h : yabai -m window --resize right:20:0
+# visual < alt - j : yabai -m window --resize bottom:0:20
 #
-#   *            = matches every application not specified in <proc_map_lst>
+# # decrease window size
+# visual < alt - k : yabai -m window --resize bottom:0:-20
+# visual < alt - l : yabai -m window --resize right:-20:0
 #
-#   ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+# # set insertion point in focused container
+# # ctrl + alt - h : yabai -m window --insert west
 #
-# A mode is declared according to the following rules:
+# # toggle window zoom
+# alt - d : yabai -m window --toggle zoom-parent
+# alt - f : yabai -m window --toggle zoom-fullscreen
 #
-#   mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
-#               '::' <name> '@'               | '::' <name>
+# # toggle window split type
+# alt - s : yabai -m window --toggle split
 #
-#   name      = desired name for this mode,
+# # float / unfloat window and center on screen
+# shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
 #
-#   @         = capture keypresses regardless of being bound to an action
+# # toggle sticky(+float), picture-in-picture
+# shift + alt - p : yabai -m window --toggle sticky --toggle pip
 #
-#   command   = command is executed through '$SHELL -c' and
-#               follows valid shell syntax. if the $SHELL environment
-#               variable is not set, it will default to '/bin/bash'.
-#               when bash is used, the ';' delimeter can be specified
-#               to chain commands.
 #
-#               to allow a command to extend into multiple lines,
-#               prepend '\' at the end of the previous line.
+# # ################################################################ #
+# # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
+# # FOR SIMPLE EXAMPLE MAPPINGS LOOK FURTHER DOWN THIS FILE..        #
+# # ################################################################ #
 #
-#               an EOL character signifies the end of the bind.
-
+# # A list of all built-in modifier and literal keywords can
+# # be found at https://github.com/koekeishiya/skhd/issues/1
+# #
+# # A hotkey is written according to the following rules:
+# #
+# #   hotkey       = <mode> '<' <action> | <action>
+# #
+# #   mode         = 'name of mode' | <mode> ',' <mode>
+# #
+# #   action       = <keysym> '[' <proc_map_lst> ']' | <keysym> '->' '[' <proc_map_lst> ']'
+# #                  <keysym> ':' <command>          | <keysym> '->' ':' <command>
+# #                  <keysym> ';' <mode>             | <keysym> '->' ';' <mode>
+# #
+# #   keysym       = <mod> '-' <key> | <key>
+# #
+# #   mod          = 'modifier keyword' | <mod> '+' <mod>
+# #
+# #   key          = <literal> | <keycode>
+# #
+# #   literal      = 'single letter or built-in keyword'
+# #
+# #   keycode      = 'apple keyboard kVK_<Key> values (0x3C)'
+# #
+# #   proc_map_lst = * <proc_map>
+# #
+# #   proc_map     = <string> ':' <command> | <string>     '~' |
+# #                  '*'      ':' <command> | '*'          '~'
+# #
+# #   string       = '"' 'sequence of characters' '"'
+# #
+# #   command      = command is executed through '$SHELL -c' and
+# #                  follows valid shell syntax. if the $SHELL environment
+# #                  variable is not set, it will default to '/bin/bash'.
+# #                  when bash is used, the ';' delimeter can be specified
+# #                  to chain commands.
+# #
+# #                  to allow a command to extend into multiple lines,
+# #                  prepend '\' at the end of the previous line.
+# #
+# #                  an EOL character signifies the end of the bind.
+# #
+# #   ->           = keypress is not consumed by skhd
+# #
+# #   *            = matches every application not specified in <proc_map_lst>
+# #
+# #   ~            = application is unbound and keypress is forwarded per usual, when specified in a <proc_map>
+# #
+# # A mode is declared according to the following rules:
+# #
+# #   mode_decl = '::' <name> '@' ':' <command> | '::' <name> ':' <command> |
+# #               '::' <name> '@'               | '::' <name>
+# #
+# #   name      = desired name for this mode,
+# #
+# #   @         = capture keypresses regardless of being bound to an action
+# #
+# #   command   = command is executed through '$SHELL -c' and
+# #               follows valid shell syntax. if the $SHELL environment
+# #               variable is not set, it will default to '/bin/bash'.
+# #               when bash is used, the ';' delimeter can be specified
+# #               to chain commands.
+# #
+# #               to allow a command to extend into multiple lines,
+# #               prepend '\' at the end of the previous line.
+# #
+# #               an EOL character signifies the end of the bind.
+#
