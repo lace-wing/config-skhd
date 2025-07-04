@@ -11,7 +11,7 @@ alt - return : ^open -na /Applications/Ghostty.app
 :: visual : sketchybar --trigger skhd_mode_change SKHD_MODE=VIS
 
 # default to config
-default < alt - v ; visual
+default < alt - r ; visual
 
 # visual to default
 visual < escape ; default
