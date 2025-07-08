@@ -1,6 +1,17 @@
+############
+# Preamble #
+############
+
+# This config is for skhd.zig, not the original skhd.
+# It contains syntax that skhd does not recognize.
+
 ##################
 # Generic config #
 ##################
+
+.shell zsh
+
+.define terminals ["kitty", "wezterm", "terminal", "ghostty"]
 
 # default/insert mode: use as usual
 :: default : sketchybar --trigger skhd_mode_change SKHD_MODE="INS"
