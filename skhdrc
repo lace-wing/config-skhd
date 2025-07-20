@@ -45,7 +45,7 @@ visual < i ; default
 # Misc #
 ########
 
-alt - return : ^open -na /Applications/Ghostty.app
+alt - return : open -na /Applications/Ghostty.app
 
 
 
