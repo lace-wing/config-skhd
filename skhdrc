@@ -117,8 +117,8 @@ normal < shift - x : aerospace close-all-windows-but-current
 default, normal, visual < alt - tab : aerospace workspace-back-and-forth
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt - b : aerospace workspace prev --wrap-around
-alt - n : aerospace workspace next --wrap-around
+# alt - b : aerospace workspace prev --wrap-around
+# alt - n : aerospace workspace next --wrap-around
 alt - 1 : aerospace workspace 1
 alt - 2 : aerospace workspace 2
 alt - 3 : aerospace workspace 3
@@ -141,8 +141,8 @@ normal < 8 : aerospace workspace 8
 normal < 9 : aerospace workspace 9
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-shift + alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
-shift + alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
+# shift + alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
+# shift + alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
 shift + alt - 1 : aerospace move-node-to-workspace 1 && aerospace workspace 1
 shift + alt - 2 : aerospace move-node-to-workspace 2 && aerospace workspace 2
 shift + alt - 3 : aerospace move-node-to-workspace 3 && aerospace workspace 3
@@ -153,8 +153,8 @@ shift + alt - 7 : aerospace move-node-to-workspace 7 && aerospace workspace 7
 shift + alt - 8 : aerospace move-node-to-workspace 8 && aerospace workspace 8
 shift + alt - 9 : aerospace move-node-to-workspace 9 && aerospace workspace 9
 
-normal < alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
-normal < alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
+# normal < alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
+# normal < alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
 normal < alt - 1 : aerospace move-node-to-workspace 1 && aerospace workspace 1
 normal < alt - 2 : aerospace move-node-to-workspace 2 && aerospace workspace 2
 normal < alt - 3 : aerospace move-node-to-workspace 3 && aerospace workspace 3
