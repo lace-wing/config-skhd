@@ -22,18 +22,12 @@
 # visual mode: move windows
 :: visual : sketchybar --trigger skhd_mode_change SKHD_MODE="VIS"
 
-# pending: pending action
-:: pending
-
 # from normal
 normal < i ; default
 normal < v ; visual
 
 # from insert
 default < alt - escape ; normal
-# default < escape -> ; pending
-# pending < escape ; normal
-# pending < * -> ; insert
 
 # from visual
 visual < escape ; normal
@@ -87,22 +81,23 @@ shift + alt - h : aerospace move left
 shift + alt - j : aerospace move down
 shift + alt - k : aerospace move up
 shift + alt - l : aerospace move right
-visual < h : aerospace move left
-visual < j : aerospace move down
-visual < k : aerospace move up
-visual < l : aerospace move right
-visual < shift - h : aerospace join-with left
-visual < shift - j : aerospace join-with down
-visual < shift - k : aerospace join-with up
-visual < shift - l : aerospace join-with right
+shift + alt - h : aerospace move left
+
+normal < alt - j : aerospace move down
+normal < alt - k : aerospace move up
+normal < alt - l : aerospace move right
+normal < shift - h : aerospace join-with left
+normal < shift - j : aerospace join-with down
+normal < shift - k : aerospace join-with up
+normal < shift - l : aerospace join-with right
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # 0x1B - minus
-visual < 0x1B : aerospace resize smart -50
+normal < 0x1B : aerospace resize smart -50
 # 0x18 - equal
-visual < 0x18 : aerospace resize smart +50
+normal < 0x18 : aerospace resize smart +50
 # reset layout
-visual < r : aerospace flatten-workspace-tree
+normal < r : aerospace flatten-workspace-tree
 
 # maximize and fullscreen
 alt - f : aerospace fullscreen
@@ -128,8 +123,7 @@ alt - 6 : aerospace workspace 6
 alt - 7 : aerospace workspace 7
 alt - 8 : aerospace workspace 8
 alt - 9 : aerospace workspace 9
-normal < b : aerospace workspace prev --wrap-around
-normal < n : aerospace workspace next --wrap-around
+
 normal < 1 : aerospace workspace 1
 normal < 2 : aerospace workspace 2
 normal < 3 : aerospace workspace 3
@@ -141,8 +135,6 @@ normal < 8 : aerospace workspace 8
 normal < 9 : aerospace workspace 9
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-# shift + alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
-# shift + alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
 shift + alt - 1 : aerospace move-node-to-workspace 1 && aerospace workspace 1
 shift + alt - 2 : aerospace move-node-to-workspace 2 && aerospace workspace 2
 shift + alt - 3 : aerospace move-node-to-workspace 3 && aerospace workspace 3
@@ -153,8 +145,6 @@ shift + alt - 7 : aerospace move-node-to-workspace 7 && aerospace workspace 7
 shift + alt - 8 : aerospace move-node-to-workspace 8 && aerospace workspace 8
 shift + alt - 9 : aerospace move-node-to-workspace 9 && aerospace workspace 9
 
-# normal < alt - b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
-# normal < alt - n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
 normal < alt - 1 : aerospace move-node-to-workspace 1 && aerospace workspace 1
 normal < alt - 2 : aerospace move-node-to-workspace 2 && aerospace workspace 2
 normal < alt - 3 : aerospace move-node-to-workspace 3 && aerospace workspace 3
@@ -165,31 +155,21 @@ normal < alt - 7 : aerospace move-node-to-workspace 7 && aerospace workspace 7
 normal < alt - 8 : aerospace move-node-to-workspace 8 && aerospace workspace 8
 normal < alt - 9 : aerospace move-node-to-workspace 9 && aerospace workspace 9
 
-visual < b : aerospace move-node-to-workspace --wrap-around prev && aerospace workspace --wrap-around prev
-visual < n : aerospace move-node-to-workspace --wrap-around next && aerospace workspace --wrap-around next
-visual < 1 : aerospace move-node-to-workspace 1 && aerospace workspace 1
-visual < 2 : aerospace move-node-to-workspace 2 && aerospace workspace 2
-visual < 3 : aerospace move-node-to-workspace 3 && aerospace workspace 3
-visual < 4 : aerospace move-node-to-workspace 4 && aerospace workspace 4
-visual < 5 : aerospace move-node-to-workspace 5 && aerospace workspace 5
-visual < 6 : aerospace move-node-to-workspace 6 && aerospace workspace 6
-visual < 7 : aerospace move-node-to-workspace 7 && aerospace workspace 7
-visual < 8 : aerospace move-node-to-workspace 8 && aerospace workspace 8
-visual < 9 : aerospace move-node-to-workspace 9 && aerospace workspace 9
-
-# visual < alt - w : aerospace close-all-windows-but-current
-
 # monitor
-normal < alt - h : aerospace focus-monitor --wrap-around left
-normal < alt - j : aerospace focus-monitor --wrap-around down
-normal < alt - k : aerospace focus-monitor --wrap-around up
-normal < alt - l : aerospace focus-monitor --wrap-around right
+visual < h : aerospace focus-monitor --wrap-around left
+visual < j : aerospace focus-monitor --wrap-around down
+visual < k : aerospace focus-monitor --wrap-around up
+visual < l : aerospace focus-monitor --wrap-around right
 
 visual < alt - h : aerospace move-node-to-monitor --wrap-around left
 visual < alt - j : aerospace move-node-to-monitor --wrap-around down
 visual < alt - k : aerospace move-node-to-monitor --wrap-around up
 visual < alt - l : aerospace move-node-to-monitor --wrap-around right
 
+visual < shift + alt - h : aerospace move-workspace-to-monitor --wrap-around left
+visual < shift + alt - j : aerospace move-workspace-to-monitor --wrap-around down
+visual < shift + alt - k : aerospace move-workspace-to-monitor --wrap-around up
+visual < shift + alt - l : aerospace move-workspace-to-monitor --wrap-around right
 
 
 # ################
