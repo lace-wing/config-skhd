@@ -19,19 +19,19 @@
 # normal mode: move around
 :: normal : sketchybar --trigger skhd_mode_change SKHD_MODE="NOR"
 
-# visual mode: move windows
-:: visual : sketchybar --trigger skhd_mode_change SKHD_MODE="VIS"
+# verbatim mode: move windows
+:: verbatim : sketchybar --trigger skhd_mode_change SKHD_MODE="VER"
 
 # from normal
 normal < i ; default
-normal < v ; visual
+normal < v ; verbatim
 
 # from insert
 default < cmd - escape ; normal
 
-# from visual
-visual < escape ; normal
-visual < i ; default
+# from verbatim
+verbatim < escape ; normal
+verbatim < i ; default
 
 ################
 # Major Remaps #
@@ -45,13 +45,6 @@ visual < i ; default
 ########
 
 # cmd - return : open -na /Applications/Ghostty.app
-
-##########
-# Plover #
-##########
-
-# steno mode: plover enabled
-normal < t : /Applications/Plover.app/Contents/MacOS/Plover -s plover_send_command toggle
 
 #############
 # Aerospace #
@@ -87,10 +80,10 @@ normal < cmd - h : aerospace move left
 normal < cmd - j : aerospace move down
 normal < cmd - k : aerospace move up
 normal < cmd - l : aerospace move right
-normal < shift - h : aerospace join-with left
-normal < shift - j : aerospace join-with down
-normal < shift - k : aerospace join-with up
-normal < shift - l : aerospace join-with right
+normal < cmd + shift - h : aerospace join-with left
+normal < cmd + shift - j : aerospace join-with down
+normal < cmd + shift - k : aerospace join-with up
+normal < cmd + shift - l : aerospace join-with right
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 # 0x1B - minus
@@ -110,7 +103,7 @@ normal < x : aerospace close
 normal < shift - x : aerospace close-all-windows-but-current
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-default, normal, visual < alt - tab : aerospace workspace-back-and-forth
+default, normal, verbatim < cmd - tab : aerospace workspace-back-and-forth
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 # alt - b : aerospace workspace prev --wrap-around
@@ -157,20 +150,25 @@ normal < cmd - 8 : aerospace move-node-to-workspace 8 && aerospace workspace 8
 normal < cmd - 9 : aerospace move-node-to-workspace 9 && aerospace workspace 9
 
 # monitor
-visual < h : aerospace focus-monitor --wrap-around left
-visual < j : aerospace focus-monitor --wrap-around down
-visual < k : aerospace focus-monitor --wrap-around up
-visual < l : aerospace focus-monitor --wrap-around right
+# 0x21 - [
+# 0x1E - ]
+# 0x2B - ,
+# 0x2F - .
+# doesn't seem to work
+normal < left : aerospace focus-monitor --wrap-around left
+normal < down : aerospace focus-monitor --wrap-around down
+normal < up : aerospace focus-monitor --wrap-around up
+normal < right : aerospace focus-monitor --wrap-around right
 
-visual < cmd - h : aerospace move-node-to-monitor --wrap-around left
-visual < cmd - j : aerospace move-node-to-monitor --wrap-around down
-visual < cmd - k : aerospace move-node-to-monitor --wrap-around up
-visual < cmd - l : aerospace move-node-to-monitor --wrap-around right
+normal < cmd - left : aerospace move-node-to-monitor --wrap-around left
+normal < cmd - down : aerospace move-node-to-monitor --wrap-around down
+normal < cmd - up : aerospace move-node-to-monitor --wrap-around up
+normal < cmd - right : aerospace move-node-to-monitor --wrap-around right
 
-visual < shift + cmd - h : aerospace move-workspace-to-monitor --wrap-around left
-visual < shift + cmd - j : aerospace move-workspace-to-monitor --wrap-around down
-visual < shift + cmd - k : aerospace move-workspace-to-monitor --wrap-around up
-visual < shift + cmd - l : aerospace move-workspace-to-monitor --wrap-around right
+normal < shift + cmd - left : aerospace move-workspace-to-monitor --wrap-around left
+normal < shift + cmd - down : aerospace move-workspace-to-monitor --wrap-around down
+normal < shift + cmd - up : aerospace move-workspace-to-monitor --wrap-around up
+normal < shift + cmd - right : aerospace move-workspace-to-monitor --wrap-around right
 
 
 # ################
@@ -178,10 +176,10 @@ visual < shift + cmd - l : aerospace move-workspace-to-monitor --wrap-around rig
 # ################
 #
 # # default to config
-# default < alt - v ; visual
+# default < alt - v ; verbatim
 #
-# # visual to default
-# visual < escape ; default
+# # verbatim to default
+# verbatim < escape ; default
 #
 # # restart service, which reloads config
 # shift + alt - r : yabai --restart-service
@@ -251,12 +249,12 @@ visual < shift + cmd - l : aerospace move-workspace-to-monitor --wrap-around rig
 # # shift + ctrl - l : yabai -m window --move rel:20:0
 #
 # # increase window size
-# visual < alt - h : yabai -m window --resize right:20:0
-# visual < alt - j : yabai -m window --resize bottom:0:20
+# verbatim < alt - h : yabai -m window --resize right:20:0
+# verbatim < alt - j : yabai -m window --resize bottom:0:20
 #
 # # decrease window size
-# visual < alt - k : yabai -m window --resize bottom:0:-20
-# visual < alt - l : yabai -m window --resize right:-20:0
+# verbatim < alt - k : yabai -m window --resize bottom:0:-20
+# verbatim < alt - l : yabai -m window --resize right:-20:0
 #
 # # set insertion point in focused container
 # # ctrl + alt - h : yabai -m window --insert west
