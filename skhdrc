@@ -11,7 +11,7 @@
 
 .shell "/bin/zsh"
 
-.define terminals ["kitty", "wezterm", "terminal", "ghostty"]
+.define browsers ["safari", "chrome", "chromium", "arc", "zen browser"]
 
 # default/insert mode: use as usual
 :: default : sketchybar --trigger skhd_mode_change SKHD_MODE="INS"
@@ -30,8 +30,7 @@ normal < v ; verbatim
 default < cmd - escape ; normal
 
 # from verbatim
-verbatim < escape ; normal
-verbatim < i ; default
+verbatim < cmd - escape ; default
 
 ################
 # Major Remaps #
@@ -41,10 +40,14 @@ verbatim < i ; default
 # done in system settings - customize modifiers
 
 ########
-# Misc #
+# Apps #
 ########
 
-# cmd - return : open -na /Applications/Ghostty.app
+normal < t : open -a /Applications/Ghostty.app
+normal < shift - t : open -na /Applications/Ghostty.app
+
+normal < b : open -a '/Applications/Zen Browser.app'
+normal < shift - b : open -na '/Applications/Zen Browser.app'
 
 #############
 # Aerospace #
